@@ -11,77 +11,70 @@
 </head>
 
 <body>
-        <header class="columns">
-            <h1 class="column is-full has-text-centered border">FitCal</h1>
-        </header>
-        <section class="columns">
-            <h2 class="column is-full has-text-centered border">Date</h2>
-        </section>
-    <!-- Navigation bar three functionalities -->
-    <section class="selector">
-        <div class="columns">
-            <div class="column has-text-centered border">BMI</div>
-            <div class="column has-text-centered border">Nutrition</div>
-            <div class="column has-text-centered border">Excercise</div>
-        </div>
+    <header class="columns">
+        <h1 class="column is-full has-text-centered hero is-info">FitCal</h1>
+    </header>
+    <section class="columns">
+        <h2 id="date" class="column is-full has-text-centered">Date</h2>
     </section>
+    <!-- Navigation bar three functionalities -->
+    <nav class="columns is-flex is-justify-content-center">
+        <button id="bmiBtn" class="column is-one-fifth button is-info">BMI</button>
+        <button id="nutriBtn" class="column is-one-fifth button is-info is-outlined">Nutrition</button>
+        <button id="excerBtn" class="column is-one-fifth button is-info">Excercise</button>
+    </nav>
     <main>
         <section class="nutrition">
             <!-- input bar for nutrition -->
-            <section class="columns">
-                <input type="number" class="column border" placeholder="Amount">
-                <select name="measurement" id="unit" class="column border">
+            <section class="columns is-flex is-justify-content-center mt-1">
+                <input id="amountInput" type="number" class="input is-info column is-one-fifth" placeholder="Amount" >
+                <select id="unitInput" name="measurement" class="dropdown is-one-fifth" >
                     <option value="lb">lb</option>
                     <option value="oz">oz</option>
                     <option value="g">g</option>
                     <option value="mg">mg</option>
                 </select>
-                <input type="text" class="column border" placeholder="Food">
-                <button type="submit" class="column border">Submit</button>
+                <input id="itemInput" type="text" class="input is-info column is-one-fifth" placeholder="Food">
+                <button id="submitBtn" type="submit" class="column button is-one-fifth">Submit</button>
             </section>
             <!-- row with all nutritional sections -->
-            <section class="columns">
-                <p class="column has-text-centered border"></p>
-                <p class="column has-text-centered border">Nutrition</p>
-                <p class="column has-text-centered border">Calories</p>
-                <p class="column has-text-centered border">Protein</p>
-                <p class="column has-text-centered border">Carbs</p>
-                <p class="column has-text-centered border">Sodium</p>
-                <p class="column has-text-centered border">Fat</p>
-                <p class="column has-text-centered border">Cholestrol</p>
-                <p class="column has-text-centered border"></p>
-            </section>
-            <!-- total row -->
-            <section class="columns">
-                <p class="column has-text-centered border"></p>
-                <p class="column has-text-centered border">Totals</p>
-                <p class="column has-text-centered border" id="Calories"></p>
-                <p class="column has-text-centered border" id="Protein"></p>
-                <p class="column has-text-centered border" id="Carbs"></p>
-                <p class="column has-text-centered border" id="Sodium"></p>
-                <p class="column has-text-centered border" id="Fat"></p>
-                <p class="column has-text-centered border" id="Cholestrol"></p>
-                <p class="column has-text-centered border"></p>
-            </section>
-            <section class="foodEntries">
+            <table class="table is-flex is-justify-content-center">
+                <tr>
+                    <th>Food</th>
+                    <th>Calories</th>
+                    <th>Protein</th>
+                    <th>Carbs</th>
+                    <th>Fat</th>
+                    <th class="is-hidden-mobile">Sodium</th>
+                    <th class="is-hidden-mobile">Cholestrol</th>
+                    <th></th>
+                </tr>
+                <!-- total row -->
+                <tr>
+                    <td>Totals</td>
+                    <td id="caloriesTot">1kcal</td>
+                    <td id="proteinTot">1g</td>
+                    <td id="carbsTot">1g</td>
+                    <td id="fatTot">1g</td>
+                    <td id="sodiumTot" class="is-hidden-mobile">1mg</td>
+                    <td id="cholesterolTot" class="is-hidden-mobile">1mg</td>
+                    <td></td>
+                </tr>
                 <!-- sample entry -->
-                <section class="columns">
-                    <p class="column has-text-centered border"></p>
-                    <p class="column has-text-centered border">Food Item</p>
-                    <p class="column has-text-centered border Calories">1</p>
-                    <p class="column has-text-centered border Protein">2</p>
-                    <p class="column has-text-centered border Carbs">3</p>
-                    <p class="column has-text-centered border Sodium">4</p>
-                    <p class="column has-text-centered border Fat">5</p>
-                    <p class="column has-text-centered border Cholestrol">6</p>
-                    <button class="column border">Remove</button>
-                </section>
-            </section>
+                <tr class="entries">
+                    <td class="itemInfo">Item</td>
+                    <td class="calInfo">1kcal</td> 
+                    <td class="protInfo">1g</td>
+                    <td class="carInfo">1g</td>
+                    <td class="fatInfo">1g</td>
+                    <td class="sodInfo is-hidden-mobile">1mg</td>
+                    <td class="cholInfo is-hidden-mobile">1mg</td>
+                    <td><button class="removeBtn">X</button></td>
+                </tr>
+            </table>
         </section>
 
     </main>
-
-
 
     <script src="./assets/js/script.js"></script>
 </body>
