@@ -1,15 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
     <link rel="stylesheet" href="./assets/css/style.css">
     <title>FitCal - Fitness and Nutrition</title>
 </head>
+
 <body>
-    
+        <header class="columns">
+            <h1 class="column is-full has-text-centered border">FitCal</h1>
+        </header>
+        <section class="columns">
+            <h2 class="column is-full has-text-centered border">Date</h2>
+        </section>
+    <!-- Navigation bar three functionalities -->
+    <section class="selector">
+        <div class="columns">
+            <div class="column has-text-centered border">BMI</div>
+            <div class="column has-text-centered border">Nutrition</div>
+            <div class="column has-text-centered border">Excercise</div>
+        </div>
+    </section>
+    <main>
+        <section class="nutrition">
+            <!-- input bar for nutrition -->
+            <section class="columns">
+                <input type="number" class="column border" placeholder="Amount">
+                <select name="measurement" id="unit" class="column border">
+                    <option value="lb">lb</option>
+                    <option value="oz">oz</option>
+                    <option value="g">g</option>
+                    <option value="mg">mg</option>
+                </select>
+                <input type="text" class="column border" placeholder="Food">
+                <button type="submit" class="column border">Submit</button>
+            </section>
+            <!-- row with all nutritional sections -->
+            <section class="columns">
+                <p class="column has-text-centered border"></p>
+                <p class="column has-text-centered border">Nutrition</p>
+                <p class="column has-text-centered border">Calories</p>
+                <p class="column has-text-centered border">Protein</p>
+                <p class="column has-text-centered border">Carbs</p>
+                <p class="column has-text-centered border">Sodium</p>
+                <p class="column has-text-centered border">Fat</p>
+                <p class="column has-text-centered border">Cholestrol</p>
+                <p class="column has-text-centered border"></p>
+            </section>
+            <!-- total row -->
+            <section class="columns">
+                <p class="column has-text-centered border"></p>
+                <p class="column has-text-centered border">Totals</p>
+                <p class="column has-text-centered border" id="Calories"></p>
+                <p class="column has-text-centered border" id="Protein"></p>
+                <p class="column has-text-centered border" id="Carbs"></p>
+                <p class="column has-text-centered border" id="Sodium"></p>
+                <p class="column has-text-centered border" id="Fat"></p>
+                <p class="column has-text-centered border" id="Cholestrol"></p>
+                <p class="column has-text-centered border"></p>
+            </section>
+            <section class="foodEntries">
+                <!-- sample entry -->
+                <section class="columns">
+                    <p class="column has-text-centered border"></p>
+                    <p class="column has-text-centered border">Food Item</p>
+                    <p class="column has-text-centered border Calories">1</p>
+                    <p class="column has-text-centered border Protein">2</p>
+                    <p class="column has-text-centered border Carbs">3</p>
+                    <p class="column has-text-centered border Sodium">4</p>
+                    <p class="column has-text-centered border Fat">5</p>
+                    <p class="column has-text-centered border Cholestrol">6</p>
+                    <button class="column border">Remove</button>
+                </section>
+            </section>
+        </section>
+
+    </main>
+
+
 
     <script src="./assets/js/script.js"></script>
 </body>
+
 </html>
