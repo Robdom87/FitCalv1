@@ -1,15 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
     <link rel="stylesheet" href="./assets/css/style.css">
     <title>FitCal - Fitness and Nutrition</title>
 </head>
+
 <body>
-    
+    <header class="columns">
+        <h1 class="column is-full has-text-centered hero is-info">FitCal</h1>
+    </header>
+    <section class="columns">
+        <h2 id="date" class="column is-full has-text-centered">Date</h2>
+    </section>
+    <!-- Navigation bar three functionalities -->
+    <nav class="columns is-flex is-justify-content-center">
+        <button id="bmiBtn" class="column is-one-fifth button is-info">BMI</button>
+        <button id="nutriBtn" class="column is-one-fifth button is-info is-outlined">Nutrition</button>
+        <button id="excerBtn" class="column is-one-fifth button is-info">Exercise</button>
+    </nav>
+    <main>
+        <section class="nutrition">
+            <!-- input bar for nutrition -->
+            <section class="columns is-flex is-justify-content-center mt-1">
+                <input id="amountInput" type="number" class="input is-info column is-one-fifth" placeholder="Amount" >
+                <select id="unitInput" name="measurement" class="dropdown is-one-fifth" >
+                    <option value="lb">lb</option>
+                    <option value="oz">oz</option>
+                    <option value="g">g</option>
+                    <option value="mg">mg</option>
+                </select>
+                <input id="itemInput" type="text" class="input is-info column is-one-fifth" placeholder="Food">
+                <button id="submitBtn" type="submit" class="column button is-one-fifth">Submit</button>
+            </section>
+            <!-- row with all nutritional sections -->
+            <table class="table is-flex is-justify-content-center">
+                <tr>
+                    <th>Food</th>
+                    <th>Calories</th>
+                    <th>Protein</th>
+                    <th>Carbs</th>
+                    <th>Fat</th>
+                    <th class="is-hidden-mobile">Sodium</th>
+                    <th class="is-hidden-mobile">Cholestrol</th>
+                    <th></th>
+                </tr>
+                <!-- total row -->
+                <tr>
+                    <td>Totals</td>
+                    <td id="caloriesTot">1kcal</td>
+                    <td id="proteinTot">1g</td>
+                    <td id="carbsTot">1g</td>
+                    <td id="fatTot">1g</td>
+                    <td id="sodiumTot" class="is-hidden-mobile">1mg</td>
+                    <td id="cholesterolTot" class="is-hidden-mobile">1mg</td>
+                    <td></td>
+                </tr>
+                <!-- sample entry -->
+                <tr class="entries">
+                    <td class="itemInfo">Item</td>
+                    <td class="calInfo">1kcal</td> 
+                    <td class="protInfo">1g</td>
+                    <td class="carInfo">1g</td>
+                    <td class="fatInfo">1g</td>
+                    <td class="sodInfo is-hidden-mobile">1mg</td>
+                    <td class="cholInfo is-hidden-mobile">1mg</td>
+                    <td><button class="removeBtn">X</button></td>
+                </tr>
+            </table>
+        </section>
+
+    </main>
 
     <script src="./assets/js/script.js"></script>
 </body>
+
 </html>
