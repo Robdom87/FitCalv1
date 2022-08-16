@@ -10,6 +10,11 @@ $('#submitBtn').on('click', function () {
     //assign user input to API queries and clean up extra spaces
     amount = parseInt(amountInput.val().trim(), 10);
 
+    //exit request if amount is negative
+    if (amount < 0) {
+        return;
+    }
+
     //round as only whole numbers are taken
     amount = Math.round(amount).toString();
 
