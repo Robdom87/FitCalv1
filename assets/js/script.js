@@ -107,7 +107,9 @@ function printNutrition(data) {
     table.append(newRow);
 }
 
-
+$("#foodValues").on('click', '.removeBtn', function(){
+    $(this).closest('tr').remove();
+})
 
 
 

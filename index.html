@@ -21,9 +21,109 @@
     <nav class="columns is-flex is-justify-content-center">
         <button id="bmiBtn" class="column is-one-fifth button is-info">BMI</button>
         <button id="nutriBtn" class="column is-one-fifth button is-info is-outlined">Nutrition</button>
+
+        <button id="exerBtn" class="column is-one-fifth button is-info">Exercise</button>
+    </nav>
+    <main>
+        <section class="exercise">
+            <p>Intensity</p>
+            <input type="checkbox" id="beginner" name="beginner" value="beginner">
+            <label for="beginner">Beginner</label><br>
+
+            <input type="checkbox" id="intermediate" name="intermediate" value="intermediate">
+            <label for="intermediate"> Intermediate</label><br>
+
+            <input type="checkbox" id="advanced" name="advanced" value="advanced">
+            <label for="advanced"> Advanced</label><br>
+
+            <p>type</p>
+            <input type="checkbox" id="cardio" name="cardio" value="cardio">
+            <label for="cardio">Cardio</label><br>
+
+            <input type="checkbox" id="strength" name="strength" value="strength">
+            <label for="strength"> Strength</label><br>
+
+            <input type="checkbox" id="stretching" name="stretching" value="stretching">
+            <label for="stretching">Stretching</label><br>
+
+            <p>Muscle Group</p>
+            <input type="checkbox" id="abdominals" name="abdominals" value="abdominals">
+            <label for="abdominals"> Abdominals</label><br>
+
+            <input type="checkbox" id="abductos" name="abductos" value="abductos">
+            <label for="abductos">Abductos</label><br>
+
+            <input type="checkbox" id="adductors" name="adductors" value="adductors">
+            <label for="adductors"> Adductors</label><br>
+
+            <input type="checkbox" id="biceps" name="biceps" value="biceps">
+            <label for="biceps">Biceps</label><br>
+
+            <input type="checkbox" id="calves" name="calves" value="calves">
+            <label for="calves"> Calves</label><br>
+
+            <input type="checkbox" id="chest" name="chest" value="chest">
+            <label for="chest">Chest</label><br>
+
+            <input type="checkbox" id="forearms" name="forearms" value="forearms">
+            <label for="forearms">Forearms</label><br>
+
+            <input type="checkbox" id="glutes" name="glutes" value="glutes">
+            <label for="glutes">Glutes</label><br>
+
+            <input type="checkbox" id="hamstrings" name="hamstrings" value="hamstrings">
+            <label for="hamstrings"> Hamstrings</label><br>
+
+            <input type="checkbox" id="lats" name="lats" value="lats">
+            <label for="lats">Lats</label><br>
+
+            <input type="checkbox" id="lower_back" name="lower_back" value="lower_back">
+            <label for="lower_back"> Lower Back</label><br>
+
+            <input type="checkbox" id="middle_back" name="middle_back" value="middle_back">
+            <label for="middle_back">Middle Back</label><br>
+
+            <input type="checkbox" id="neck" name="neck" value="neck">
+            <label for="neck">Neck</label><br>
+
+            <input type="checkbox" id="quadriceps" name="quadriceps" value="quadriceps">
+            <label for="quadriceps">Quadriceps</label><br>
+
+            <input type="checkbox" id="traps" name="traps" value="traps">
+            <label for="traps">Traps</label><br>
+
+            <input type="checkbox" id="triceps" name="triceps" value="triceps">
+            <label for="triceps">Triceps</label><br>
+
+            <button id= "exerciseSearch">Search</button>
+        </section>
+
+        <section>
+            <div class="modal">
+                <div class="modal-background"></div>
+                <div class="modal-card">
+                  <header class="modal-card-head">
+                    <p class="modal-card-title">Excercise Selection</p>
+                    <button class="delete" aria-label="close"></button>
+                  </header>
+                  <section class="modal-card-body">
+                    <!-- Content ... -->
+                  </section>
+                  <footer class="modal-card-foot">
+                    <button class="button is-success">Save changes</button>
+                    <button class="cancelButton">Cancel</button>
+                  </footer>
+                </div>
+              </div>
+
+
+        </section>
+            
+
         <button id="excerBtn" class="column is-one-fifth button is-info">Exercise</button>
     </nav>
     <main>
+
         <section class="nutrition">
             <!-- input bar for nutrition -->
             <section class="columns is-flex is-justify-content-center mt-1">
@@ -38,7 +138,7 @@
                 <button id="submitBtn" type="submit" class="column button is-one-fifth">Submit</button>
             </section>
             <!-- row with all nutritional sections -->
-            <table class="table is-flex is-justify-content-center">
+            <table class="table is-flex is-justify-content-center" table id="foodValues">
                 <tr>
                     <th>Food</th>
                     <th>Calories</th>
