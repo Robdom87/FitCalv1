@@ -1,6 +1,3 @@
-document.write('Hello!');
-
-
 $(function(){
     $(".exercise").hide();
 });
@@ -35,5 +32,5 @@ fetch(requestUrl, {
     .then(function (data) {
         console.log(data);
     });
-
+javas
 
