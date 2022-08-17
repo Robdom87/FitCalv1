@@ -1,10 +1,46 @@
+// BMI Calculator
+$(function(){
+    $("#bmi").hide();
+});
+
+$("#bmiBtn").click(function() {
+    $('.nutrition').hide();
+    $('.exercise').hide();
+    $('#bmi').show();
+});
+
+function calculateBmi() {
+    let weight = document.getElementById("weight").value
+    let height = document.getElementById("height").value
+    let bmi = (weight / (height * height) * 703)
+    
+    document.getElementById("heading").innerHTML = "Your BMI is:&nbsp";
+    document.getElementById("bmi-output").innerHTML = bmi.toFixed(1)
+    console.log(bmi);
+
+    if (bmi <= 18.4) {
+        document.getElementById("message").innerHTML = "&nbsp&nbsp&nbsp You are underweight"
+    } else if (bmi <= 25 && bmi >= 18.4) {
+        document.getElementById("message").innerHTML = "&nbsp&nbsp&nbsp You have a healthy weight"
+    } else {
+        document.getElementById("message").innerHTML = "&nbsp&nbsp&nbsp You are overweight"
+    }
+}
+function reload() {
+    window.location.reload()
+}
+
 $(function(){
     $(".exercise").hide();
 });
 
+
+
+
 $("#exerBtn").click(function() {
     // console.log("exercise"); // or alert($(this).attr('id'));
     $('.nutrition').hide();
+    $("#bmi").hide();
     $('.exercise').show();
 });
 
