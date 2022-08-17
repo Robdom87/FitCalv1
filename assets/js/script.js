@@ -95,7 +95,7 @@ function printNutrition(data) {
     let newRow = $('<tr>');
 
     let itemInfo = $('<td>');
-    itemInfo.text(data[0].name);
+    itemInfo.text(data[0].name).addClass('nameInfo');
     newRow.append(itemInfo);
 
     let calInfo = $('<td>');
@@ -176,7 +176,7 @@ function printSavedNutrition() {
         let newRow = $('<tr>');
 
         let itemInfo = $('<td>');
-        itemInfo.text(savedNArray[base]);
+        itemInfo.text(savedNArray[base]).addClass('nameInfo');
         newRow.append(itemInfo);
 
         let calInfo = $('<td>');
@@ -215,8 +215,20 @@ function printSavedNutrition() {
 
 //remove button functionality within nutrition table
 $("#foodValues").on('click', '.removeBtn', function () {
+    let removedName = $(this).parent().siblings('.nameInfo').text();
+    let removedCal = $(this).parent().siblings('.calInfo').text();
     $(this).closest('tr').remove();
+    let oldSaved = JSON.parse(localStorage.getItem('nutritionRow'));
+    for ( let i = 0; i < oldSaved.length; i++) {
+        if(oldSaved[i] === removedName && oldSaved[i+1] == removedCal) {
+            oldSaved.splice(i,7);
+            console.log(oldSaved);
+            localStorage.setItem('nutritionRow', JSON.stringify(oldSaved));
+            return;      
+        }
+    }
 })
+
 
 
 
