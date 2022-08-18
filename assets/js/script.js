@@ -49,6 +49,13 @@ $("#exerBtn").click(function() {
     $('.exercise').show();
 });
 
+
+$("#nutriBtn").click(function() {
+    $('.exercise').hide();
+    $("#bmi").hide();
+    $('.nutrition').show();
+});
+
 $("#exerciseSearch").click(function() {
     $('.modal').show();
 });
