@@ -56,30 +56,82 @@ $("#nutriBtn").click(function() {
     $('.nutrition').show();
 });
 
-$("#exerciseSearch").click(function() {
+$("#exerciseSearch").submit(function(event) {
+    event.preventDefault();
+
+    var isError = false;
     $('.modal').show();
-});
-
-$('.delete').click(function(){
-    $(".modal").hide();
-});
-
-$('.cancelButton').click(function(){
-    $(".modal").hide();
-});
-
-let requestUrl = 'https://api.api-ninjas.com/v1/exercises?muscle&difficulty='
-fetch(requestUrl, {
-    headers: {
-        'X-Api-Key': 'GKg0l9hlc0fRJEHUdIsVzw==lti9bU3OVAYwF8Wk'
+    var intensityInput= document.getElementsByName("intensity");
+    for(var i=0; i < intensityInput.length; i++) {
+        if(intensityInput[i].checked){
+            var intensityValue = intensityInput[i].value
+        } else{
+            isError = true;
+            $('.modal-card-title').text("ERROR")
+            $('.modal-card-body').text("Need to select one of each category")
+            $('.is-success, .cancel-button').hide();
+            
+        }
     }
-})
-    .then(function (response) {
-        return response.json();
+    var typeInput= document.getElementsByName("type");
+    for(var i=0; i < typeInput.length; i++) {
+        if(typeInput[i].checked){
+            var typeValue = typeInput[i].value
+        } else{
+            $('.modal-card-title').text("ERROR")
+            $('.modal-card-body').text("Need to select one of each category")
+            $('.is-success, .cancel-button').hide();
+            
+        }
+    }
+    var muscleInput= document.getElementsByName("muscle");
+    for(var i=0; i < muscleInput.length; i++) {
+        if(muscleInput[i].checked){
+            var muscleValue = muscleInput[i].value
+        } else{
+            $('.modal-card-title').text("ERROR")
+            $('.modal-card-body').text("Need to select one of each category")
+            $('.is-success, .cancel-button').hide();
+            
+        }
+    }
+    let requestUrl = 'https://api.api-ninjas.com/v1/exercises?muscle='+muscleValue+ '&difficulty='+intensityValue + '&type='+typeValue
+    fetch(requestUrl, {
+        headers: {
+            'X-Api-Key': 'GKg0l9hlc0fRJEHUdIsVzw==lti9bU3OVAYwF8Wk'
+        }
     })
-    .then(function (data) {
-        console.log(data);
-    });
+        .then(function (response) {
+            return response.json();
+
+        })
+        .then(function (data) {
+            console.log(data);
+            $('.modal-card-body').text("")
+            for(var i=0; i < data.length; i++) {
+                var name = data[i].name
+                var equipment = data[i].equipment
+                var instructions = data[i].instructions
+                var results = $('<input type="radio" name="result" />');
+                var labelResults = $('<label for="result"/><br>').text(name)
+                $('.modal-card-body').append(results).append(labelResults)
+
+            }
+            $('.modal-card-title').text("Exercise Selection")
+            $('.is-success, .cancel-button').show();
+            $(".ok-button").hide();
+
+        });
+    
+    
+
+
+});
+
+$('.delete, .cancel-button, .ok-button').click(function(){
+    $(".modal").hide();
+});
+
 
 
 let amount = '';
@@ -131,7 +183,7 @@ $('#submitBtn').on('click', function () {
     }
 
     // call API with user input
-    let requestUrl = 'https://api.api-ninjas.com/v1/nutrition?query=' + amount + '%20' + unit + '%20' + food;
+    let requestNutriUrl = 'https://api.api-ninjas.com/v1/nutrition?query=' + amount + '%20' + unit + '%20' + food;
     getData(requestNutriUrl);
 })
 
@@ -174,6 +226,7 @@ function printNutrition(data) {
 
     table.append(newRow);
 }
+
 
 function addToArray(data) {
     let newSaved = [];
