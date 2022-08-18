@@ -8,13 +8,18 @@ $("#exerBtn").click(function() {
     $('.exercise').show();
 });
 
-$("#exerciseSearch").click(function() {
+$("#exerciseSearch").submit(function(event) {
+    event.preventDefault();
+
+    var isError = false;
+
     $('.modal').show();
     var intensityInput= document.getElementsByName("intensity");
     for(var i=0; i < intensityInput.length; i++) {
         if(intensityInput[i].checked){
             var intensityValue = intensityInput[i].value
         } else{
+            isError = true;
             $('.modal-card-title').text("ERROR")
             $('.modal-card-body').text("Need to select one of each category")
             $('.is-success, .cancel-button').hide();

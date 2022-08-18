@@ -25,9 +25,9 @@
         <button id="exerBtn" class="column is-one-fifth button is-info">Exercise</button>
     </nav>
     <main>
-        <section class="exercise">
+        <form id="exerciseSearch" class="exercise">
             <p>Intensity</p>
-            <input type="radio" id="beginner" name="intensity" value="beginner">
+            <input type="radio" id="beginner" name="intensity" value="beginner" required>
             <label for="beginner">Beginner</label><br>
 
             <input type="radio" id="intermediate" name="intensity" value="intermediate">
@@ -37,7 +37,7 @@
             <label for="advanced"> Advanced</label><br>
 
             <p>type</p>
-            <input type="radio" id="cardio" name="type" value="cardio">
+            <input type="radio" id="cardio" name="type" value="cardio" required>
             <label for="cardio">Cardio</label><br>
 
             <input type="radio" id="strength" name="type" value="strength">
@@ -47,14 +47,14 @@
             <label for="stretching">Stretching</label><br>
 
             <p>Muscle Group</p>
-            <input type="radio" id="abdominals" name="muscle" value="abdominals">
+            <input type="radio" id="abdominals" name="muscle" value="abdominals" required>
             <label for="abdominals"> Abdominals</label><br>
 
             <input type="radio" id="abductors" name="muscle" value="abductors">
             <label for="abductors">Abductors</label><br>
 
-            <input type="radio" id="adductors" name="muscle" value="adductors">
-            <label for="adductors"> Adductors</label><br>
+            <!-- <input type="radio" id="adductors" name="muscle" value="adductors">
+            <label for="adductors"> Adductors</label><br> -->
 
             <input type="radio" id="biceps" name="muscle" value="biceps">
             <label for="biceps">Biceps</label><br>
@@ -95,8 +95,8 @@
             <input type="radio" id="triceps" name="muscle" value="triceps">
             <label for="triceps">Triceps</label><br>
 
-            <button id= "exerciseSearch">Search</button>
-        </section>
+            <button  type="submit">Search</button>
+        </form>
 
         <section>
             <div class="modal">
@@ -120,14 +120,14 @@
 
         </section>
 
-        <section>
+        <!-- <section>
             <div class="workout1">
                 
             </div>
 
 
 
-        </section>
+        </section> -->
             
 
     </nav>
