@@ -1,3 +1,10 @@
+// Current Date
+$(document).ready(function(){
+    let currentDay = moment().format("MMMM, DD, YYYY");
+    let displayDate = document.getElementById("date");
+    displayDate.innerHTML = currentDay;
+});
+
 // BMI Calculator
 $(function(){
     $("#bmi").hide();
@@ -26,9 +33,7 @@ function calculateBmi() {
         document.getElementById("message").innerHTML = "&nbsp&nbsp&nbsp You are overweight"
     }
 }
-function reload() {
-    window.location.reload()
-}
+
 
 $(function(){
     $(".exercise").hide();
