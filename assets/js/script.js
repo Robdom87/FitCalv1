@@ -50,7 +50,11 @@ $("#exerBtn").click(function () {
 });
 
 
-
+$("#nutriBtn").click(function() {
+    $('.exercise').hide();
+    $("#bmi").hide();
+    $('.nutrition').show();
+});
 
 $("#exerciseSearch").submit(function (event) {
     event.preventDefault();
