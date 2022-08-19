@@ -177,6 +177,36 @@ let table = $('table');
 
 // nutrition page functionality
 
+//prevent negative numbers from being typed in Amount, html min="0" covers the up/down arrows
+var inputNumber = document.getElementById('amountInput');
+
+inputNumber.onkeydown = function(e) {
+    if(!((e.keyCode > 95 && e.keyCode < 106)
+      || (e.keyCode > 47 && e.keyCode < 58) 
+      || e.keyCode == 8)) {
+        return false;
+    }
+}
+//prevent numbers from being typed in food field
+var foodInput = document.getElementById('itemInput');
+
+foodInput.onkeydown = function(e) {
+    if(!((e.keyCode > 64 && e.keyCode < 91)
+      || e.keyCode == 8)) {
+        return false;
+    }
+}
+
+//prevent letters from being typed in BMI fields
+var bmiInput = document.getElementById('weight', 'height');
+
+bmiInput.onkeydown = function(e) {
+    if(!((e.keyCode > 47 && e.keyCode < 58)
+      || e.keyCode == 8)) {
+        return false;
+    }
+}
+
 //display information if any exists in local storage
 if (localStorage.getItem('nutritionRow') !== null) {
     printSavedNutrition();
