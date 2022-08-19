@@ -15,7 +15,7 @@
         <h1 class="column is-full has-text-centered hero is-info">FitCal</h1>
     </header>
     <section class="columns">
-        <h2 id="date" class="column is-full has-text-centered">Date</h2>
+        <h2 id="date" class="column is-full has-text-centered"></h2>
     </section>
     <!-- Navigation bar three functionalities -->
     <nav class="columns is-flex is-justify-content-center">
@@ -24,21 +24,24 @@
 
         <button id="exerBtn" class="column is-one-fifth button is-info">Exercise</button>
     </nav>
-    <main>   
         <!-- BMI calculator input (hiden) -->
         <section id="bmi">
             <div class="columns is-flex is-justify-content-center mt-1">
-            
-            <div class="pr-4"><h3>BMI Calculator</h3></div>
-                <label for="weight"></label>
-                <input class="input is-info column is-one-fifth" placeholder="Weight (lbs)" id="weight" type="numbers"></br>
-                <label for="weight">&nbsp</label>
-                <input class="input is-info column is-one-fifth" placeholder="Height (in)" id="height" type="numbers"></br>
 
-                <button onclick="calculateBmi()" >Submit</button>
+                <div class="pr-4">
+                    <h3>BMI Calculator</h3>
+                </div>
+                <label for="weight"></label>
+                <input class="input is-info column is-one-fifth" placeholder="Weight (lbs)" id="weight"
+                    type="numbers"></br>
+                <label for="weight">&nbsp</label>
+                <input class="input is-info column is-one-fifth" placeholder="Height (in)" id="height"
+                    type="numbers"></br>
+
+                <button onclick="calculateBmi()">Submit</button>
                 <!-- <button onclick="reload()" >Clear</button> -->
             </div>
-            
+
             <div class="columns is-flex is-justify-content-center mt-1">
                 <p id="heading"></p>
                 <p id="bmi-output"></p>
@@ -46,103 +49,103 @@
             </div>
         </section>
         <!-- Exercise -->
-        <section class="exercise">
-<form id="exerciseSearch" class="exercise">
-            <p>Intensity</p>
-            <input type="radio" id="beginner" name="intensity" value="beginner" required>
-            <label for="beginner">Beginner</label><br>
+            <form id="exerciseSearch" class="exercise">
+                <p>Intensity</p>
+                <input type="radio" id="beginner" name="intensity" value="beginner" required>
+                <label for="beginner">Beginner</label><br>
 
-            <input type="radio" id="intermediate" name="intensity" value="intermediate">
-            <label for="intermediate"> Intermediate</label><br>
+                <input type="radio" id="intermediate" name="intensity" value="intermediate">
+                <label for="intermediate"> Intermediate</label><br>
 
-            <input type="radio" id="advanced" name="intensity" value="advanced">
-            <label for="advanced"> Advanced</label><br>
+                <input type="radio" id="advanced" name="intensity" value="advanced">
+                <label for="advanced"> Advanced</label><br>
 
-            <p>type</p>
-            <input type="radio" id="cardio" name="type" value="cardio" required>
-            <label for="cardio">Cardio</label><br>
+                <p>type</p>
+                <input type="radio" id="cardio" name="type" value="cardio" required>
+                <label for="cardio">Cardio</label><br>
 
-            <input type="radio" id="strength" name="type" value="strength">
-            <label for="strength"> Strength</label><br>
+                <input type="radio" id="strength" name="type" value="strength">
+                <label for="strength"> Strength</label><br>
 
-            <input type="radio" id="stretching" name="type" value="stretching">
-            <label for="stretching">Stretching</label><br>
+                <input type="radio" id="stretching" name="type" value="stretching">
+                <label for="stretching">Stretching</label><br>
 
-            <p>Muscle Group</p>
-            <input type="radio" id="abdominals" name="muscle" value="abdominals" required>
-            <label for="abdominals"> Abdominals</label><br>
+                <p>Muscle Group</p>
+                <input type="radio" id="abdominals" name="muscle" value="abdominals" required>
+                <label for="abdominals"> Abdominals</label><br>
 
-            <input type="radio" id="abductors" name="muscle" value="abductors">
-            <label for="abductors">Abductors</label><br>
+                <input type="radio" id="abductors" name="muscle" value="abductors">
+                <label for="abductors">Abductors</label><br>
 
-            <!-- <input type="radio" id="adductors" name="muscle" value="adductors">
+                <!-- <input type="radio" id="adductors" name="muscle" value="adductors">
             <label for="adductors"> Adductors</label><br> -->
 
-            <input type="radio" id="biceps" name="muscle" value="biceps">
-            <label for="biceps">Biceps</label><br>
+                <input type="radio" id="biceps" name="muscle" value="biceps">
+                <label for="biceps">Biceps</label><br>
 
-            <input type="radio" id="calves" name="muscle" value="calves">
-            <label for="calves"> Calves</label><br>
+                <input type="radio" id="calves" name="muscle" value="calves">
+                <label for="calves"> Calves</label><br>
 
-            <input type="radio" id="chest" name="muscle" value="chest">
-            <label for="chest">Chest</label><br>
+                <input type="radio" id="chest" name="muscle" value="chest">
+                <label for="chest">Chest</label><br>
 
-            <input type="radio" id="forearms" name="muscle" value="forearms">
-            <label for="forearms">Forearms</label><br>
+                <input type="radio" id="forearms" name="muscle" value="forearms">
+                <label for="forearms">Forearms</label><br>
 
-            <input type="radio" id="glutes" name="muscle" value="glutes">
-            <label for="glutes">Glutes</label><br>
+                <input type="radio" id="glutes" name="muscle" value="glutes">
+                <label for="glutes">Glutes</label><br>
 
-            <input type="radio" id="hamstrings" name="muscle" value="hamstrings">
-            <label for="hamstrings"> Hamstrings</label><br>
+                <input type="radio" id="hamstrings" name="muscle" value="hamstrings">
+                <label for="hamstrings"> Hamstrings</label><br>
 
-            <input type="radio" id="lats" name="muscle" value="lats">
-            <label for="lats">Lats</label><br>
+                <input type="radio" id="lats" name="muscle" value="lats">
+                <label for="lats">Lats</label><br>
 
-            <input type="radio" id="lower_back" name="muscle" value="lower_back">
-            <label for="lower_back"> Lower Back</label><br>
+                <input type="radio" id="lower_back" name="muscle" value="lower_back">
+                <label for="lower_back"> Lower Back</label><br>
 
-            <input type="radio" id="middle_back" name="muscle" value="middle_back">
-            <label for="middle_back">Middle Back</label><br>
+                <input type="radio" id="middle_back" name="muscle" value="middle_back">
+                <label for="middle_back">Middle Back</label><br>
 
-            <input type="radio" id="neck" name="muscle" value="neck">
-            <label for="neck">Neck</label><br>
+                <input type="radio" id="neck" name="muscle" value="neck">
+                <label for="neck">Neck</label><br>
 
-            <input type="radio" id="quadriceps" name="muscle" value="quadriceps">
-            <label for="quadriceps">Quadriceps</label><br>
+                <input type="radio" id="quadriceps" name="muscle" value="quadriceps">
+                <label for="quadriceps">Quadriceps</label><br>
 
-            <input type="radio" id="traps" name="muscle" value="traps">
-            <label for="traps">Traps</label><br>
+                <input type="radio" id="traps" name="muscle" value="traps">
+                <label for="traps">Traps</label><br>
 
-            <input type="radio" id="triceps" name="muscle" value="triceps">
-            <label for="triceps">Triceps</label><br>
+                <input type="radio" id="triceps" name="muscle" value="triceps">
+                <label for="triceps">Triceps</label><br>
 
-            <button  type="submit">Search</button>
-        </form>
+                <button type="submit">Search</button>
+            </form>
 
-        <section>
-            <div class="modal">
-                <div class="modal-background"></div>
-                <div class="modal-card">
-                  <header class="modal-card-head">
-                    <p class="modal-card-title"></p>
-                    <button class="delete" aria-label="close"></button>
-                  </header>
-                  <section class="modal-card-body">
-                    <!-- Content ... -->
-                  </section>
-                  <footer class="modal-card-foot">
-                    <button class="button is-success" id="savebutton">Save</button>
-                    <button class="cancel-button">Cancel</button>
-                    <button class="ok-button">Ok</button>
-                  </footer>
+
+            <section>
+                <div class="modal">
+                    <div class="modal-background"></div>
+                    <div class="modal-card">
+                        <header class="modal-card-head">
+                            <p class="modal-card-title"></p>
+                            <button class="delete" aria-label="close"></button>
+                        </header>
+                        <section class="modal-card-body">
+                            <!-- Content ... -->
+                        </section>
+                        <footer class="modal-card-foot">
+                            <button class="button is-success">Save</button>
+                            <button class="cancel-button">Cancel</button>
+                            <button class="ok-button">Ok</button>
+                        </footer>
+                    </div>
                 </div>
-              </div>
 
 
-        </section>
+            </section>
 
-        <!-- <section>
+            <!-- <section>
             <div class="workout1">
                 
             </div>
@@ -150,53 +153,55 @@
 
 
         </section> -->
-            
-    </nav>
-    <main>
 
-        <section class="nutrition">
-            <!-- input bar for nutrition -->
-            <section class="columns is-flex is-justify-content-center mt-1">
-                <input id="amountInput" type="number" class="input is-info column is-one-fifth" placeholder="Amount" >
-                <select id="unitInput" name="measurement" class="dropdown is-one-fifth" >
-                    <option value="lb">lb</option>
-                    <option value="oz">oz</option>
-                    <option value="g">g</option>
-                    <option value="item">item</option>
-                </select>
-                <input id="itemInput" type="text" class="input is-info column is-one-fifth" placeholder="Food">
-                <button id="submitBtn" type="submit" class="column button is-one-fifth">Submit</button>
-            </section>
-            <!-- row with all nutritional sections -->
-            <table class="table is-flex is-justify-content-center" id="foodValues">
-                <tr>
-                    <th>Food</th>
-                    <th>Calories</th>
-                    <th>Protein</th>
-                    <th>Carbs</th>
-                    <th>Fat</th>
-                    <th class="is-hidden-mobile">Sodium</th>
-                    <th class="is-hidden-mobile">Cholestrol</th>
-                    <th></th>
-                </tr>
-                <!-- total row -->
-                <tr>
-                    <td>Totals</td>
-                    <td id="caloriesTot">1kcal</td>
-                    <td id="proteinTot">1g</td>
-                    <td id="carbsTot">1g</td>
-                    <td id="fatTot">1g</td>
-                    <td id="sodiumTot" class="is-hidden-mobile">1mg</td>
-                    <td id="cholesterolTot" class="is-hidden-mobile">1mg</td>
-                    <td></td>
-                </tr>
-            </table>
-        </section>
 
-    </main>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script> <!-- moment link -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="./assets/js/script.js"></script>
+            <main>
+
+                <section class="nutrition">
+                    <!-- input bar for nutrition -->
+                    <section class="columns is-flex is-justify-content-center mt-1">
+                        <input id="amountInput" type="number" class="input is-info column is-one-fifth"
+                            placeholder="Amount">
+                        <select id="unitInput" name="measurement" class="dropdown is-one-fifth">
+                            <option value="lb">lb</option>
+                            <option value="oz">oz</option>
+                            <option value="g">g</option>
+                            <option value="item">item</option>
+                        </select>
+                        <input id="itemInput" type="text" class="input is-info column is-one-fifth" placeholder="Food">
+                        <button id="submitBtn" type="submit" class="column button is-one-fifth">Submit</button>
+                    </section>
+                    <!-- row with all nutritional sections -->
+                    <table class="table is-flex is-justify-content-center" id="foodValues">
+                        <tr>
+                            <th>Food</th>
+                            <th>Calories</th>
+                            <th>Protein</th>
+                            <th>Carbs</th>
+                            <th>Fat</th>
+                            <th class="is-hidden-mobile">Sodium</th>
+                            <th class="is-hidden-mobile">Cholestrol</th>
+                            <th></th>
+                        </tr>
+                        <!-- total row -->
+                        <tr>
+                            <td>Totals</td>
+                            <td id="caloriesTot">1kcal</td>
+                            <td id="proteinTot">1g</td>
+                            <td id="carbsTot">1g</td>
+                            <td id="fatTot">1g</td>
+                            <td id="sodiumTot" class="is-hidden-mobile">1mg</td>
+                            <td id="cholesterolTot" class="is-hidden-mobile">1mg</td>
+                            <td></td>
+                        </tr>
+                    </table>
+                </section>
+
+            </main>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+            <!-- moment link -->
+            <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+            <script src="./assets/js/script.js"></script>
 </body>
 
 </html>

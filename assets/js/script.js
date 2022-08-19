@@ -1,16 +1,19 @@
-// Current Date
-$(document).ready(function(){
-    let currentDay = moment().format("MMMM, DD, YYYY");
+
+function checkTime(){
+    let currentDay = moment().format("MMMM DD, YYYY");
     let displayDate = document.getElementById("date");
-    displayDate.innerHTML = currentDay;
-});
+    displayDate.innerHTML = currentDay
+};
+
+checkTime(); // run checkTime function
+setInterval(checkTime, 1000); // timer updates every second
 
 // BMI Calculator
-$(function(){
+$(function () {
     $("#bmi").hide();
 });
 
-$("#bmiBtn").click(function() {
+$("#bmiBtn").click(function () {
     $('.nutrition').hide();
     $('.exercise').hide();
     $('#bmi').show();
@@ -20,7 +23,7 @@ function calculateBmi() {
     let weight = document.getElementById("weight").value
     let height = document.getElementById("height").value
     let bmi = (weight / (height * height) * 703)
-    
+
     document.getElementById("heading").innerHTML = "Your BMI is:&nbsp";
     document.getElementById("bmi-output").innerHTML = bmi.toFixed(1)
     console.log(bmi);
@@ -35,6 +38,9 @@ function calculateBmi() {
 }
 
 
+
+
+
 $(function(){
     $(".exercise").hide();
 });
@@ -42,7 +48,7 @@ $(function(){
 
 
 
-$("#exerBtn").click(function() {
+$("#exerBtn").click(function () {
     // console.log("exercise"); // or alert($(this).attr('id'));
     $('.nutrition').hide();
     $("#bmi").hide();
@@ -56,46 +62,46 @@ $("#nutriBtn").click(function() {
     $('.nutrition').show();
 });
 
-$("#exerciseSearch").submit(function(event) {
+$("#exerciseSearch").submit(function (event) {
     event.preventDefault();
 
     var isError = false;
     $('.modal').show();
-    var intensityInput= document.getElementsByName("intensity");
-    for(var i=0; i < intensityInput.length; i++) {
-        if(intensityInput[i].checked){
+    var intensityInput = document.getElementsByName("intensity");
+    for (var i = 0; i < intensityInput.length; i++) {
+        if (intensityInput[i].checked) {
             var intensityValue = intensityInput[i].value
-        } else{
+        } else {
             isError = true;
             $('.modal-card-title').text("ERROR")
             $('.modal-card-body').text("Need to select one of each category")
             $('.is-success, .cancel-button').hide();
-            
+
         }
     }
-    var typeInput= document.getElementsByName("type");
-    for(var i=0; i < typeInput.length; i++) {
-        if(typeInput[i].checked){
+    var typeInput = document.getElementsByName("type");
+    for (var i = 0; i < typeInput.length; i++) {
+        if (typeInput[i].checked) {
             var typeValue = typeInput[i].value
-        } else{
+        } else {
             $('.modal-card-title').text("ERROR")
             $('.modal-card-body').text("Need to select one of each category")
             $('.is-success, .cancel-button').hide();
-            
+
         }
     }
-    var muscleInput= document.getElementsByName("muscle");
-    for(var i=0; i < muscleInput.length; i++) {
-        if(muscleInput[i].checked){
+    var muscleInput = document.getElementsByName("muscle");
+    for (var i = 0; i < muscleInput.length; i++) {
+        if (muscleInput[i].checked) {
             var muscleValue = muscleInput[i].value
-        } else{
+        } else {
             $('.modal-card-title').text("ERROR")
             $('.modal-card-body').text("Need to select one of each category")
             $('.is-success, .cancel-button').hide();
-            
+
         }
     }
-    let requestUrl = 'https://api.api-ninjas.com/v1/exercises?muscle='+muscleValue+ '&difficulty='+intensityValue + '&type='+typeValue
+    let requestUrl = 'https://api.api-ninjas.com/v1/exercises?muscle=' + muscleValue + '&difficulty=' + intensityValue + '&type=' + typeValue
     fetch(requestUrl, {
         headers: {
             'X-Api-Key': 'GKg0l9hlc0fRJEHUdIsVzw==lti9bU3OVAYwF8Wk'
@@ -109,7 +115,7 @@ $("#exerciseSearch").submit(function(event) {
             var workouts =[]
             console.log(data);
             $('.modal-card-body').text("")
-            for(var i=0; i < data.length; i++) {
+            for (var i = 0; i < data.length; i++) {
                 var name = data[i].name
                 var equipment = data[i].equipment
                 var instructions = data[i].instructions
@@ -124,8 +130,8 @@ $("#exerciseSearch").submit(function(event) {
             $(".ok-button").hide();
 
         });
-    
-    
+
+
 
 
 });
@@ -145,9 +151,10 @@ function saveworkout(){
         localStorage.setItem("workouts",JSON.stringify(workouts))
 
     })
-
 }
+
 $('.delete, .cancel-button, .ok-button').click(function(){
+
     $(".modal").hide();
 });
 
@@ -164,7 +171,9 @@ let food = "";
 let amountInput = $('#amountInput');
 let unitInput = $('#unitInput');
 let itemInput = $('#itemInput');
-let table= $('table');
+let table = $('table');
+
+
 
 // nutrition page functionality
 
@@ -249,6 +258,7 @@ function printNutrition(data) {
     newRow.append(remove);
 
     table.append(newRow);
+    sumTotal();
 }
 
 
@@ -258,7 +268,7 @@ function addToArray(data) {
     if (localStorage.getItem('nutritionRow') !== null) {
         newSaved = JSON.parse(localStorage.getItem('nutritionRow'));
     }
-    
+
     newSaved.push(data[0].name);
     newSaved.push(data[0].calories);
     newSaved.push(data[0].protein_g);
@@ -266,7 +276,7 @@ function addToArray(data) {
     newSaved.push(data[0].fat_total_g);
     newSaved.push(data[0].sodium_mg);
     newSaved.push(data[0].cholesterol_mg);
-    
+
     rowSaved(newSaved);
 }
 
@@ -331,28 +341,68 @@ function printSavedNutrition() {
         newRow.append(remove);
 
         table.append(newRow);
+        sumTotal();
     }
 }
 
 
-$("#foodValues").on('click', '.removeBtn', function(){
+$("#foodValues").on('click', '.removeBtn', function () {
     let removedName = $(this).parent().siblings('.nameInfo').text();
     let removedCal = $(this).parent().siblings('.calInfo').text();
     $(this).closest('tr').remove();
+    sumTotal();
     let oldSaved = JSON.parse(localStorage.getItem('nutritionRow'));
-    for ( let i = 0; i < oldSaved.length; i++) {
-        if(oldSaved[i] === removedName && oldSaved[i+1] == removedCal) {
-            oldSaved.splice(i,7);
+    for (let i = 0; i < oldSaved.length; i++) {
+        if (oldSaved[i] === removedName && oldSaved[i + 1] == removedCal) {
+            oldSaved.splice(i, 7);
             console.log(oldSaved);
             localStorage.setItem('nutritionRow', JSON.stringify(oldSaved));
-            return;      
+            return;
         }
     }
 })
 
 
+function sumTotal() {
+    let calInfoTot = 0;
+    let protInfoTot = 0;
+    let carInfoTot = 0;
+    let fatInfoTot = 0;
+    let sodInfoTot = 0;
+    let cholInfoTot = 0;
+    
 
+    $(".calInfo").each(function () {
+        let totalcal = this.textContent;
+        calInfoTot = calInfoTot + parseInt(totalcal);
+    })
+    $(".protInfo").each(function () {
+        let totalprot = this.textContent;
+        protInfoTot = protInfoTot + parseInt(totalprot);
+    })
+    $(".carInfo").each(function () {
+        let totalcar = this.textContent;
+        carInfoTot = carInfoTot + parseInt(totalcar);
+    })
+    $(".fatInfo").each(function () {
+        let totalfat = this.textContent;
+        fatInfoTot = fatInfoTot + parseInt(totalfat);
+    })
+    $(".sodInfo").each(function () {
+        let totalsod = this.textContent;
+        sodInfoTot = sodInfoTot + parseInt(totalsod);
+    })
+    $(".cholInfo").each(function () {
+        let totalchol = this.textContent;
+        cholInfoTot = cholInfoTot + parseInt(totalchol);
+    })
 
-
+    $("#caloriesTot").text(calInfoTot + "kcal");
+    $("#proteinTot").text(protInfoTot + "g");
+    $("#carbsTot").text(carInfoTot + "g");
+    $("#fatTot").text(fatInfoTot + "g");
+    $("#sodiumTot").text(sodInfoTot + "mg");
+    $("#cholesterolTot").text(cholInfoTot + "mg");
+}
 
 
