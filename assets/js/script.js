@@ -112,17 +112,19 @@ $("#exerciseSearch").submit(function (event) {
 
         })
         .then(function (data) {
+            var workouts =[]
             console.log(data);
             $('.modal-card-body').text("")
             for (var i = 0; i < data.length; i++) {
                 var name = data[i].name
                 var equipment = data[i].equipment
                 var instructions = data[i].instructions
-                var results = $('<input type="radio" name="result" />');
+                var results = $(`<input type="radio" name="result" data-name="${name}" data-equipment="${equipment}" data-instructions="${instructions}"/>`);
+                results.on("change",saveworkout)
                 var labelResults = $('<label for="result"/><br>').text(name)
                 $('.modal-card-body').append(results).append(labelResults)
-
             }
+
             $('.modal-card-title').text("Exercise Selection")
             $('.is-success, .cancel-button').show();
             $(".ok-button").hide();
@@ -133,9 +135,32 @@ $("#exerciseSearch").submit(function (event) {
 
 
 });
+function saveworkout(){
+    var workouts=JSON.parse(localStorage.getItem("workouts"))||[]
+    console.log(this.dataset.name)
+    console.log(this.dataset.equipment)
+    console.log(this.dataset.instructions)
+    var workout={
+        name:this.dataset.name,
+        equipment:this.dataset.equipment,
+        instructions:this.dataset.instructions,
+    }
+    workouts.push(workout)
+    console.log(workouts)
+    $("#savebutton").on("click",function(){
+        localStorage.setItem("workouts",JSON.stringify(workouts))
 
-$('.delete, .cancel-button, .ok-button').click(function () {
+    })
+}
+
+$('.delete, .cancel-button, .ok-button').click(function(){
+
     $(".modal").hide();
+});
+
+$('.button is-success').click(function() {
+  $select_value = $("#beginner").value();
+  $('#save').modal('hide');
 });
 
 
