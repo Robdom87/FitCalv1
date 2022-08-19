@@ -165,11 +165,16 @@
                             <option value="lb">lb</option>
                             <option value="oz">oz</option>
                             <option value="g">g</option>
-                            <option value="item">item</option>
+                            <option value="item" class="itemAmount">item</option>
                         </select>
                         <input id="itemInput" type="text" class="input is-info column is-one-fifth" placeholder="Food">
                         <button id="submitBtn" type="submit" class="column button is-one-fifth">Submit</button>
                     </section>
+                    <!-- alert if API request fails -->
+                    <div class="notification is-info is-hidden">
+                        <button class="delete"></button>
+                         Please submit a valid entry.
+                      </div>
                     <!-- row with all nutritional sections -->
                     <table class="table is-flex is-justify-content-center" id="foodValues">
                         <tr>
@@ -185,12 +190,12 @@
                         <!-- total row -->
                         <tr>
                             <td>Totals</td>
-                            <td id="caloriesTot">1kcal</td>
-                            <td id="proteinTot">1g</td>
-                            <td id="carbsTot">1g</td>
-                            <td id="fatTot">1g</td>
-                            <td id="sodiumTot" class="is-hidden-mobile">1mg</td>
-                            <td id="cholesterolTot" class="is-hidden-mobile">1mg</td>
+                            <td id="caloriesTot">kcal</td>
+                            <td id="proteinTot">g</td>
+                            <td id="carbsTot">g</td>
+                            <td id="fatTot">g</td>
+                            <td id="sodiumTot" class="is-hidden-mobile">mg</td>
+                            <td id="cholesterolTot" class="is-hidden-mobile">mg</td>
                             <td></td>
                         </tr>
                     </table>

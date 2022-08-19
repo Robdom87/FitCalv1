@@ -190,12 +190,12 @@ inputNumber.onkeydown = function(e) {
 //prevent numbers from being typed in food field
 var foodInput = document.getElementById('itemInput');
 
-foodInput.onkeydown = function(e) {
-    if(!((e.keyCode > 64 && e.keyCode < 91)
-      || e.keyCode == 8)) {
-        return false;
-    }
-}
+// foodInput.onkeydown = function(e) {
+//     if(!((e.keyCode > 64 && e.keyCode < 91)
+//       || e.keyCode == 8)) {
+//         return false;
+//     }
+// }
 
 //prevent letters from being typed in BMI fields
 var bmiInput = document.getElementById('weight', 'height');
@@ -213,6 +213,7 @@ if (localStorage.getItem('nutritionRow') !== null) {
 }
 
 $('#submitBtn').on('click', function () {
+    $(".notification").addClass("is-hidden");
     //assign user input to API queries and clean up extra spaces
     amount = parseInt(amountInput.val().trim(), 10);
 
@@ -318,6 +319,11 @@ async function getData(url) {
         }
     });
     let data = await response.json();
+    //check output if blank or name nan
+    if (data.length === 0 || data[0].name === 'nan') {
+        errorMessage();
+        return;
+    }
     printNutrition(data);
     addToArray(data);
 }
@@ -375,7 +381,7 @@ function printSavedNutrition() {
     }
 }
 
-
+//remove button both removes the row from the diaply and local storage
 $("#foodValues").on('click', '.removeBtn', function () {
     let removedName = $(this).parent().siblings('.nameInfo').text();
     let removedCal = $(this).parent().siblings('.calInfo').text();
@@ -392,7 +398,7 @@ $("#foodValues").on('click', '.removeBtn', function () {
     }
 })
 
-
+//aggregate all the amounts from the page displayed in the total row
 function sumTotal() {
     let calInfoTot = 0;
     let protInfoTot = 0;
@@ -434,5 +440,15 @@ function sumTotal() {
     $("#sodiumTot").text(sodInfoTot + "mg");
     $("#cholesterolTot").text(cholInfoTot + "mg");
 }
+
+//message displayd if API request pulls bad info
+function errorMessage() {
+    $(".notification").removeClass("is-hidden");
+}
+
+//functionality for delete button
+$('.delete').click(function(){
+    $(".notification").addClass("is-hidden");
+})
 
 
