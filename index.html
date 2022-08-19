@@ -160,7 +160,7 @@
                 <section class="nutrition">
                     <!-- input bar for nutrition -->
                     <section class="columns is-flex is-justify-content-center mt-1">
-                        <input id="amountInput" type="number" class="input is-info column is-one-fifth" min="0" placeholder="Amount">
+                        <input id="amountInput" type="number" class="input is-info column is-one-fifth has-text-right" min="0" placeholder="Amount">
                         <select id="unitInput" name="measurement" class="dropdown is-one-fifth">
                             <option value="lb">lb</option>
                             <option value="oz">oz</option>
@@ -171,9 +171,10 @@
                         <button id="submitBtn" type="submit" class="column button is-one-fifth">Submit</button>
                     </section>
                     <!-- alert if API request fails -->
-                    <div class="notification is-info is-hidden">
+                    <div class="notification is-info is-hidden has-text-centered">
                         <button class="delete"></button>
-                         Please submit a valid entry.
+                         <span class="notifText">Please submit a valid entry.</span>
+                         
                       </div>
                     <!-- row with all nutritional sections -->
                     <table class="table is-flex is-justify-content-center" id="foodValues">

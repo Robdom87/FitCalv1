@@ -213,17 +213,8 @@ if (localStorage.getItem('nutritionRow') !== null) {
 }
 
 $('#submitBtn').on('click', function () {
+    //hide notification
     $(".notification").addClass("is-hidden");
-    //assign user input to API queries and clean up extra spaces
-    amount = parseInt(amountInput.val().trim(), 10);
-
-    //exit request if amount is negative
-    if (amount < 0) {
-        return;
-    }
-
-    //round as only whole numbers are taken
-    amount = Math.round(amount).toString();
 
     food = itemInput.val();
     food.trim().toLowerCase();
@@ -241,11 +232,31 @@ $('#submitBtn').on('click', function () {
 
     //if unit input is used, use fetch request with only food item name
     if (unit === "item") {
+        itemNotif();
         let itemUrl = 'https://api.api-ninjas.com/v1/nutrition?query=' + food;
         getData(itemUrl);
         return;
     }
 
+    //assign user input to API queries and clean up extra spaces
+
+    amount = amountInput.val().trim();
+
+    if (amount === "") {
+        errorMessage();
+        return;
+    }
+
+    parseInt(amount,10);
+    //exit request if amount is negative
+    if (amount < 0 ) {
+        return;
+    }
+
+    //round as only whole numbers are taken
+    amount = Math.round(amount).toString();
+
+   
     // call API with user input
     let requestNutriUrl = 'https://api.api-ninjas.com/v1/nutrition?query=' + amount + '%20' + unit + '%20' + food;
     getData(requestNutriUrl);
@@ -443,6 +454,7 @@ function sumTotal() {
 
 //message displayd if API request pulls bad info
 function errorMessage() {
+    $(".notifText").text("Please submit valid entry.");
     $(".notification").removeClass("is-hidden");
 }
 
@@ -450,5 +462,10 @@ function errorMessage() {
 $('.delete').click(function(){
     $(".notification").addClass("is-hidden");
 })
+
+function itemNotif() {
+    $(".notifText").text("Item unit only displays the nutritional info for one serving size.");
+    $(".notification").removeClass("is-hidden");
+}
 
 
