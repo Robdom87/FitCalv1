@@ -24,8 +24,30 @@
 
         <button id="exerBtn" class="column is-one-fifth button is-info">Exercise</button>
     </nav>
-    <main>
-        <form id="exerciseSearch" class="exercise">
+    <main>   
+        <!-- BMI calculator input (hiden) -->
+        <section id="bmi">
+            <div class="columns is-flex is-justify-content-center mt-1">
+            
+            <div class="pr-4"><h3>BMI Calculator</h3></div>
+                <label for="weight"></label>
+                <input class="input is-info column is-one-fifth" placeholder="Weight (lbs)" id="weight" type="numbers"></br>
+                <label for="weight">&nbsp</label>
+                <input class="input is-info column is-one-fifth" placeholder="Height (in)" id="height" type="numbers"></br>
+
+                <button onclick="calculateBmi()" >Submit</button>
+                <!-- <button onclick="reload()" >Clear</button> -->
+            </div>
+            
+            <div class="columns is-flex is-justify-content-center mt-1">
+                <p id="heading"></p>
+                <p id="bmi-output"></p>
+                <p id="message"></p>
+            </div>
+        </section>
+        <!-- Exercise -->
+        <section class="exercise">
+<form id="exerciseSearch" class="exercise">
             <p>Intensity</p>
             <input type="radio" id="beginner" name="intensity" value="beginner" required>
             <label for="beginner">Beginner</label><br>
@@ -129,7 +151,6 @@
 
         </section> -->
             
-
     </nav>
     <main>
 
@@ -147,7 +168,7 @@
                 <button id="submitBtn" type="submit" class="column button is-one-fifth">Submit</button>
             </section>
             <!-- row with all nutritional sections -->
-            <table class="table is-flex is-justify-content-center">
+            <table class="table is-flex is-justify-content-center" id="foodValues">
                 <tr>
                     <th>Food</th>
                     <th>Calories</th>
@@ -169,22 +190,11 @@
                     <td id="cholesterolTot" class="is-hidden-mobile">1mg</td>
                     <td></td>
                 </tr>
-                <!-- sample entry -->
-                <tr class="entries">
-                    <td class="itemInfo">Item</td>
-                    <td class="calInfo">1kcal</td> 
-                    <td class="protInfo">1g</td>
-                    <td class="carInfo">1g</td>
-                    <td class="fatInfo">1g</td>
-                    <td class="sodInfo is-hidden-mobile">1mg</td>
-                    <td class="cholInfo is-hidden-mobile">1mg</td>
-                    <td><button class="removeBtn">X</button></td>
-                </tr>
             </table>
         </section>
 
     </main>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script> <!-- moment link -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="./assets/js/script.js"></script>
 </body>
