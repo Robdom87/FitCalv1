@@ -1,9 +1,11 @@
-// Current Date
-$(document).ready(function(){
-    let currentDay = moment().format("MMMM, DD, YYYY");
+function checkTime(){
+    let currentDay = moment().format("MMMM DD, YYYY, h:mm:ss a");
     let displayDate = document.getElementById("date");
-    displayDate.innerHTML = currentDay;
-});
+    displayDate.innerHTML = currentDay
+};
+
+checkTime(); // run checkTime function
+setInterval(checkTime, 1000); // timer updates every second
 
 // BMI Calculator
 $(function(){
@@ -33,6 +35,8 @@ function calculateBmi() {
         document.getElementById("message").innerHTML = "&nbsp&nbsp&nbsp You are overweight"
     }
 }
+
+
 
 
 $(function(){
