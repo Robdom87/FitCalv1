@@ -1,4 +1,3 @@
-
 function checkTime(){
     let currentDay = moment().format("MMMM DD, YYYY");
     let displayDate = document.getElementById("date");
@@ -37,16 +36,9 @@ function calculateBmi() {
     }
 }
 
-
-
-
-
 $(function(){
     $(".exercise").hide();
 });
-
-
-
 
 $("#exerBtn").click(function () {
     // console.log("exercise"); // or alert($(this).attr('id'));
@@ -54,7 +46,6 @@ $("#exerBtn").click(function () {
     $("#bmi").hide();
     $('.exercise').show();
 });
-
 
 $("#nutriBtn").click(function() {
     $('.exercise').hide();
@@ -163,8 +154,6 @@ $('.button is-success').click(function() {
   $('#save').modal('hide');
 });
 
-
-
 let amount = '';
 let unit = "";
 let food = "";
@@ -172,8 +161,6 @@ let amountInput = $('#amountInput');
 let unitInput = $('#unitInput');
 let itemInput = $('#itemInput');
 let table = $('table');
-
-
 
 // nutrition page functionality
 
@@ -190,12 +177,13 @@ inputNumber.onkeydown = function(e) {
 //prevent numbers from being typed in food field
 var foodInput = document.getElementById('itemInput');
 
-// foodInput.onkeydown = function(e) {
-//     if(!((e.keyCode > 64 && e.keyCode < 91)
-//       || e.keyCode == 8)) {
-//         return false;
-//     }
-// }
+//check for all text input is either text, backspace or space
+foodInput.onkeydown = function(e) {
+    if(!((e.keyCode > 64 && e.keyCode < 91)
+      || e.keyCode == 8 || e.keyCode == 32)) {
+        return false;
+    }
+}
 
 //prevent letters from being typed in BMI fields
 var bmiInput = document.getElementById('weight', 'height');
@@ -302,7 +290,6 @@ function printNutrition(data) {
     table.append(newRow);
     sumTotal();
 }
-
 
 function addToArray(data) {
     let newSaved = [];
