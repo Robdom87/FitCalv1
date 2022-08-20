@@ -1,4 +1,3 @@
-
 function checkTime(){
     let currentDay = moment().format("MMMM DD, YYYY");
     let displayDate = document.getElementById("date");
@@ -37,16 +36,9 @@ function calculateBmi() {
     }
 }
 
-
-
-
-
 $(function(){
     $(".exercise").hide();
 });
-
-
-
 
 $("#exerBtn").click(function () {
     // console.log("exercise"); // or alert($(this).attr('id'));
@@ -54,7 +46,6 @@ $("#exerBtn").click(function () {
     $("#bmi").hide();
     $('.exercise').show();
 });
-
 
 $("#nutriBtn").click(function() {
     $('.exercise').hide();
@@ -163,17 +154,14 @@ $('.button is-success').click(function() {
   $('#save').modal('hide');
 });
 
-
-
 let amount = '';
 let unit = "";
 let food = "";
+let displayedUnit = "";
 let amountInput = $('#amountInput');
 let unitInput = $('#unitInput');
 let itemInput = $('#itemInput');
 let table = $('table');
-
-
 
 // nutrition page functionality
 
@@ -190,9 +178,10 @@ inputNumber.onkeydown = function(e) {
 //prevent numbers from being typed in food field
 var foodInput = document.getElementById('itemInput');
 
+//check for all text input is either text, backspace or space
 foodInput.onkeydown = function(e) {
     if(!((e.keyCode > 64 && e.keyCode < 91)
-      || e.keyCode == 8)) {
+      || e.keyCode == 8 || e.keyCode == 32 || e.keyCode == 46)) {
         return false;
     }
 }
@@ -213,16 +202,8 @@ if (localStorage.getItem('nutritionRow') !== null) {
 }
 
 $('#submitBtn').on('click', function () {
-    //assign user input to API queries and clean up extra spaces
-    amount = parseInt(amountInput.val().trim(), 10);
-
-    //exit request if amount is negative
-    if (amount < 0) {
-        return;
-    }
-
-    //round as only whole numbers are taken
-    amount = Math.round(amount).toString();
+    //hide notification
+    $(".notification").addClass("is-hidden");
 
     food = itemInput.val();
     food.trim().toLowerCase();
@@ -240,11 +221,33 @@ $('#submitBtn').on('click', function () {
 
     //if unit input is used, use fetch request with only food item name
     if (unit === "item") {
+        itemNotif();
         let itemUrl = 'https://api.api-ninjas.com/v1/nutrition?query=' + food;
+        displayedUnit = "item";
         getData(itemUrl);
         return;
     }
 
+    //assign user input to API queries and clean up extra spaces
+
+    amount = amountInput.val().trim();
+    displayedUnit = amount + unit;
+
+    if (amount === "") {
+        errorMessage();
+        return;
+    }
+
+    parseInt(amount,10);
+    //exit request if amount is negative
+    if (amount < 0 ) {
+        return;
+    }
+
+    //round as only whole numbers are taken
+    amount = Math.round(amount).toString();
+
+   
     // call API with user input
     let requestNutriUrl = 'https://api.api-ninjas.com/v1/nutrition?query=' + amount + '%20' + unit + '%20' + food;
     getData(requestNutriUrl);
@@ -254,7 +257,7 @@ function printNutrition(data) {
     let newRow = $('<tr>');
 
     let itemInfo = $('<td>');
-    itemInfo.text(data[0].name).addClass('nameInfo');
+    itemInfo.text(data[0].name+" ("+displayedUnit+")").addClass('nameInfo');
     newRow.append(itemInfo);
 
     let calInfo = $('<td>');
@@ -291,7 +294,6 @@ function printNutrition(data) {
     sumTotal();
 }
 
-
 function addToArray(data) {
     let newSaved = [];
 
@@ -299,7 +301,7 @@ function addToArray(data) {
         newSaved = JSON.parse(localStorage.getItem('nutritionRow'));
     }
 
-    newSaved.push(data[0].name);
+    newSaved.push(data[0].name+" ("+displayedUnit+")");
     newSaved.push(data[0].calories);
     newSaved.push(data[0].protein_g);
     newSaved.push(data[0].carbohydrates_total_g);
@@ -318,6 +320,12 @@ async function getData(url) {
         }
     });
     let data = await response.json();
+    console.log(data);
+    //check output if blank or name nan
+    if (data.length === 0 || data[0].name === 'nan') {
+        errorMessage();
+        return;
+    }
     printNutrition(data);
     addToArray(data);
 }
@@ -375,7 +383,7 @@ function printSavedNutrition() {
     }
 }
 
-
+//remove button both removes the row from the diaply and local storage
 $("#foodValues").on('click', '.removeBtn', function () {
     let removedName = $(this).parent().siblings('.nameInfo').text();
     let removedCal = $(this).parent().siblings('.calInfo').text();
@@ -392,7 +400,7 @@ $("#foodValues").on('click', '.removeBtn', function () {
     }
 })
 
-
+//aggregate all the amounts from the page displayed in the total row
 function sumTotal() {
     let calInfoTot = 0;
     let protInfoTot = 0;
@@ -427,12 +435,28 @@ function sumTotal() {
         cholInfoTot = cholInfoTot + parseInt(totalchol);
     })
 
-    $("#caloriesTot").text(calInfoTot + "kcal");
-    $("#proteinTot").text(protInfoTot + "g");
-    $("#carbsTot").text(carInfoTot + "g");
-    $("#fatTot").text(fatInfoTot + "g");
-    $("#sodiumTot").text(sodInfoTot + "mg");
-    $("#cholesterolTot").text(cholInfoTot + "mg");
+    $("#caloriesTot").text(calInfoTot + " kcal");
+    $("#proteinTot").text(protInfoTot + " g");
+    $("#carbsTot").text(carInfoTot + " g");
+    $("#fatTot").text(fatInfoTot + " g");
+    $("#sodiumTot").text(sodInfoTot + " mg");
+    $("#cholesterolTot").text(cholInfoTot + " mg");
+}
+
+//message displayd if API request pulls bad info
+function errorMessage() {
+    $(".notifText").text("Please submit valid entry.");
+    $(".notification").removeClass("is-hidden");
+}
+
+//functionality for delete button
+$('.delete').click(function(){
+    $(".notification").addClass("is-hidden");
+})
+
+function itemNotif() {
+    $(".notifText").text("Item unit only displays the nutritional info for one serving size.");
+    $(".notification").removeClass("is-hidden");
 }
 
 

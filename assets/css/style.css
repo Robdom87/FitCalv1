@@ -1,0 +1,18 @@
+@media only screen and (max-width: 576px) {
+    td {
+        max-width: 100px;
+        word-wrap: break-word; 
+    }
+
+    .table th:not([align]){
+        text-align: center;   
+    }
+
+    .table td {
+        padding: 0.3em 0.05em;
+
+    }
+    table td:not([align]) {
+        text-align: center;   
+    }
+  }
