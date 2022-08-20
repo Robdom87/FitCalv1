@@ -157,6 +157,7 @@ $('.button is-success').click(function() {
 let amount = '';
 let unit = "";
 let food = "";
+let displayedUnit = "";
 let amountInput = $('#amountInput');
 let unitInput = $('#unitInput');
 let itemInput = $('#itemInput');
@@ -180,7 +181,7 @@ var foodInput = document.getElementById('itemInput');
 //check for all text input is either text, backspace or space
 foodInput.onkeydown = function(e) {
     if(!((e.keyCode > 64 && e.keyCode < 91)
-      || e.keyCode == 8 || e.keyCode == 32)) {
+      || e.keyCode == 8 || e.keyCode == 32 || e.keyCode == 46)) {
         return false;
     }
 }
@@ -222,6 +223,7 @@ $('#submitBtn').on('click', function () {
     if (unit === "item") {
         itemNotif();
         let itemUrl = 'https://api.api-ninjas.com/v1/nutrition?query=' + food;
+        displayedUnit = "item";
         getData(itemUrl);
         return;
     }
@@ -229,6 +231,7 @@ $('#submitBtn').on('click', function () {
     //assign user input to API queries and clean up extra spaces
 
     amount = amountInput.val().trim();
+    displayedUnit = amount + unit;
 
     if (amount === "") {
         errorMessage();
@@ -254,7 +257,7 @@ function printNutrition(data) {
     let newRow = $('<tr>');
 
     let itemInfo = $('<td>');
-    itemInfo.text(data[0].name).addClass('nameInfo');
+    itemInfo.text(data[0].name+" ("+displayedUnit+")").addClass('nameInfo');
     newRow.append(itemInfo);
 
     let calInfo = $('<td>');
@@ -298,7 +301,7 @@ function addToArray(data) {
         newSaved = JSON.parse(localStorage.getItem('nutritionRow'));
     }
 
-    newSaved.push(data[0].name);
+    newSaved.push(data[0].name+" ("+displayedUnit+")");
     newSaved.push(data[0].calories);
     newSaved.push(data[0].protein_g);
     newSaved.push(data[0].carbohydrates_total_g);
@@ -317,6 +320,7 @@ async function getData(url) {
         }
     });
     let data = await response.json();
+    console.log(data);
     //check output if blank or name nan
     if (data.length === 0 || data[0].name === 'nan') {
         errorMessage();
@@ -431,12 +435,12 @@ function sumTotal() {
         cholInfoTot = cholInfoTot + parseInt(totalchol);
     })
 
-    $("#caloriesTot").text(calInfoTot + "kcal");
-    $("#proteinTot").text(protInfoTot + "g");
-    $("#carbsTot").text(carInfoTot + "g");
-    $("#fatTot").text(fatInfoTot + "g");
-    $("#sodiumTot").text(sodInfoTot + "mg");
-    $("#cholesterolTot").text(cholInfoTot + "mg");
+    $("#caloriesTot").text(calInfoTot + " kcal");
+    $("#proteinTot").text(protInfoTot + " g");
+    $("#carbsTot").text(carInfoTot + " g");
+    $("#fatTot").text(fatInfoTot + " g");
+    $("#sodiumTot").text(sodInfoTot + " mg");
+    $("#cholesterolTot").text(cholInfoTot + " mg");
 }
 
 //message displayd if API request pulls bad info
