@@ -48,7 +48,6 @@ $(function(){
 });
 
 $("#exerBtn").click(function () {
-    // console.log("exercise"); // or alert($(this).attr('id'));
     $('.nutrition').hide();
     $("#bmi").hide();
     $('.exercise').show();
@@ -88,53 +87,58 @@ $("#exerciseSearch").submit(function (event) {
             'X-Api-Key': 'GKg0l9hlc0fRJEHUdIsVzw==lti9bU3OVAYwF8Wk'
         }
     })
-        .then(function (response) {
-            return response.json();
+    .then(function (response) {
+        return response.json();
 
-        })
-        .then(function (data) {
-            console.log(data);
-            $(".saved-exercises").hide()
-            $('.exercise-selection-body').text("")
-            for(var i=0; i < data.length; i++) {
-                var name = data[i].name
-                var equipment = data[i].equipment
-                var instructions = data[i].instructions
-                var results = $(`<input type="radio" name="result" data-name="${name}" data-equipment="${equipment}" data-instructions="${instructions}"/><label for="result"/>${name}<br>`);
-                results.on("change",saveworkout)
-                $('.exercise-selection-body').append(results)
-            }
-        });
-
-
-
-
+    })
+    .then(function (data) {
+        $(".saved-exercises").hide()
+        $('.exercise-selection-body').text("")
+        for(var i=0; i < data.length; i++) {
+            var name = data[i].name
+            var equipment = data[i].equipment
+            var instructions = data[i].instructions
+            var results = $(`<input type="radio" name="result" data-name="${name}" data-equipment="${equipment}" data-instructions="${instructions}"/><label for="result"/>${name}<br>`);
+            results.on("change",saveworkout)
+            $('.exercise-selection-body').append(results)
+        }
+    });
 });
 function saveworkout(){
     var workouts=JSON.parse(localStorage.getItem("workouts"))||[]
-    console.log(this.dataset.name)
-    console.log(this.dataset.equipment)
-    console.log(this.dataset.instructions)
     var workout={
         name:this.dataset.name,
         equipment:this.dataset.equipment,
         instructions:this.dataset.instructions,
     }
     workouts.push(workout)
-    console.log(workouts)
     $("#savebutton").on("click",function(){
         localStorage.setItem("workouts",JSON.stringify(workouts))
 
     })
-
 }
-$('.delete, .cancel-button, .ok-button').click(function(){
-    $(".modal").hide();
-});
+$(".exercises-saved").click(function(){
+    $(".saved-exercises").show()
+    var workouts=JSON.parse(localStorage.getItem("workouts"))||[]
 
-$('.button is-success').click(function() {
-  $select_value = $("#beginner").value();
-  $('#save').modal('hide');
+    for(var i=0; i < workouts.length; i++) {
+        var name = workouts[i].name
+        var equipment = workouts[i].equipment
+        var instructions = workouts[i].instructions
+        var results = $(`<div><h3>${name}</h3><p>equipment: ${equipment}</p><p>instructions: ${instructions}</p></div><br>`);
+        $('.saved-exercise-body').append(results)
+    }
+
+})
+$(".remove-button").click(function(){
+    localStorage.removeItem("workouts");
+    $('.saved-exercise-body').empty()
+
+
+})
+
+$('.delete, .cancel-button').click(function(){
+    $(".modal").hide();
 });
 
 let amount = '';
