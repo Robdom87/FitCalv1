@@ -35,6 +35,13 @@ function calculateBmi() {
         document.getElementById("message").innerHTML = "&nbsp&nbsp&nbsp You are overweight"
     }
 }
+// Clear Local Storage btn
+function deleteItems(){
+    localStorage.removeItem("nutritionRow");
+    // localStorage.clear();
+     location.reload();
+}
+
 
 $(function(){
     $(".exercise").hide();
@@ -56,40 +63,23 @@ $("#nutriBtn").click(function() {
 $("#exerciseSearch").submit(function (event) {
     event.preventDefault();
 
-    var isError = false;
     $('.modal').show();
     var intensityInput = document.getElementsByName("intensity");
     for (var i = 0; i < intensityInput.length; i++) {
         if (intensityInput[i].checked) {
             var intensityValue = intensityInput[i].value
-        } else {
-            isError = true;
-            $('.modal-card-title').text("ERROR")
-            $('.modal-card-body').text("Need to select one of each category")
-            $('.is-success, .cancel-button').hide();
-
         }
     }
     var typeInput = document.getElementsByName("type");
     for (var i = 0; i < typeInput.length; i++) {
         if (typeInput[i].checked) {
             var typeValue = typeInput[i].value
-        } else {
-            $('.modal-card-title').text("ERROR")
-            $('.modal-card-body').text("Need to select one of each category")
-            $('.is-success, .cancel-button').hide();
-
         }
     }
     var muscleInput = document.getElementsByName("muscle");
     for (var i = 0; i < muscleInput.length; i++) {
         if (muscleInput[i].checked) {
             var muscleValue = muscleInput[i].value
-        } else {
-            $('.modal-card-title').text("ERROR")
-            $('.modal-card-body').text("Need to select one of each category")
-            $('.is-success, .cancel-button').hide();
-
         }
     }
     let requestUrl = 'https://api.api-ninjas.com/v1/exercises?muscle=' + muscleValue + '&difficulty=' + intensityValue + '&type=' + typeValue
@@ -103,23 +93,17 @@ $("#exerciseSearch").submit(function (event) {
 
         })
         .then(function (data) {
-            var workouts =[]
             console.log(data);
-            $('.modal-card-body').text("")
-            for (var i = 0; i < data.length; i++) {
+            $(".saved-exercises").hide()
+            $('.exercise-selection-body').text("")
+            for(var i=0; i < data.length; i++) {
                 var name = data[i].name
                 var equipment = data[i].equipment
                 var instructions = data[i].instructions
-                var results = $(`<input type="radio" name="result" data-name="${name}" data-equipment="${equipment}" data-instructions="${instructions}"/>`);
+                var results = $(`<input type="radio" name="result" data-name="${name}" data-equipment="${equipment}" data-instructions="${instructions}"/><label for="result"/>${name}<br>`);
                 results.on("change",saveworkout)
-                var labelResults = $('<label for="result"/><br>').text(name)
-                $('.modal-card-body').append(results).append(labelResults)
+                $('.exercise-selection-body').append(results)
             }
-
-            $('.modal-card-title').text("Exercise Selection")
-            $('.is-success, .cancel-button').show();
-            $(".ok-button").hide();
-
         });
 
 
@@ -142,10 +126,9 @@ function saveworkout(){
         localStorage.setItem("workouts",JSON.stringify(workouts))
 
     })
+
 }
-
 $('.delete, .cancel-button, .ok-button').click(function(){
-
     $(".modal").hide();
 });
 
@@ -408,7 +391,7 @@ function sumTotal() {
     let fatInfoTot = 0;
     let sodInfoTot = 0;
     let cholInfoTot = 0;
-    
+
 
     $(".calInfo").each(function () {
         let totalcal = this.textContent;
@@ -453,6 +436,8 @@ function errorMessage() {
 $('.delete').click(function(){
     $(".notification").addClass("is-hidden");
 })
+
+
 
 function itemNotif() {
     $(".notifText").text("Item unit only displays the nutritional info for one serving size.");
