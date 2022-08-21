@@ -24,27 +24,30 @@
         <button id="exerBtn" class="column is-one-fifth button is-outlined btnColor">Exercise</button>
     </nav>
     <!-- BMI calculator input (hiden) -->
-    <section id="bmi">
+    <section id="bmi" class="bmi-section">
         <div class="columns is-flex is-justify-content-center mt-1">
 
             <div class="pr-4">
                 <h3>BMI Calculator</h3>
             </div>
             <label for="weight"></label>
-            <input class="input is-info column is-one-fifth" placeholder="Weight (lbs)" id="weight" type="numbers"></br>
+            <input class="input is-info column is-one-fifth is-one-fifth-mobile" placeholder="Weight (lbs)" id="weight"
+                type="numbers"><br>
             <label for="weight">&nbsp</label>
-            <input class="input is-info column is-one-fifth" placeholder="Height (in)" id="height" type="numbers"></br>
+            <input class="input is-info column is-one-fifth is-one-fifth-mobile" placeholder="Height (in)" id="height"
+                type="numbers"><br>
 
-            <button onclick="calculateBmi()">Submit</button>
+            <button onclick="calculateBmi()" class="">Submit</button>
             <!-- <button onclick="reload()" >Clear</button> -->
         </div>
 
-        <div class="columns is-flex is-justify-content-center mt-1">
+        <div id="bmi-dislplay" class="columns is-flex is-justify-content-center mt-1">
             <p id="heading"></p>
             <p id="bmi-output"></p>
             <p id="message"></p>
         </div>
     </section>
+
     <!-- Exercise -->
     <form id="exerciseSearch" class="exercise">
         <p>Intensity</p>
@@ -129,7 +132,7 @@
                         <!-- Content ... -->
                 </section>
                 <footer class="modal-card-foot">
-                    <button class="button is-success">Save</button>
+                    <button id="savebutton" class="button is-success">Save</button>
                     <button class="cancel-button">Cancel</button>
                 </footer>
             </div>
@@ -205,6 +208,11 @@
                 </tr>
             </table>
         </div>
+        <section class="columns is-flex is-justify-content-center mt-1">
+            <!-- Clear Local Storage btn -->
+            <button class="columns button is-info" onclick="deleteItems()">Delete All</button>
+        </section>
+
         </section>
     </main>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
