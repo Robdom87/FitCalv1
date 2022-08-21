@@ -94,6 +94,10 @@ $("#exerciseSearch").submit(function (event) {
     .then(function (data) {
         $(".saved-exercises").hide()
         $('.exercise-selection-body').text("")
+        if (data.length===0){
+            $('.exercise-selection-body').text("No Results Found")
+            return
+        }  
         for(var i=0; i < data.length; i++) {
             var name = data[i].name
             var equipment = data[i].equipment

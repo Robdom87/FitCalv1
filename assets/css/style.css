@@ -1,9 +1,19 @@
 @media only screen and (max-width: 576px) {
-    td {
+    td { 
+
         max-width: 100px;
         word-wrap: break-word; 
     }
+    .exercise-selection { 
 
+        max-width: 375px;
+        word-wrap: break-word; 
+    }
+    .saved-exercises { 
+
+        max-width: 390px;
+        word-wrap: break-word; 
+    }
     .table th:not([align]){
         text-align: center;   
     }
@@ -34,4 +44,9 @@ nav {
     margin-right: auto;
     width: 50%;
     max-width: 300px;
+}
+.PurpleBtn {
+color:white;
+background-color: #5a4ae3;
+
 }
