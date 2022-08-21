@@ -35,6 +35,12 @@ function calculateBmi() {
         document.getElementById("message").innerHTML = "&nbsp&nbsp&nbsp You are overweight"
     }
 }
+// Clear Local Storage btn
+function deleteItems(){
+    localStorage.clear();
+    location.reload();
+}
+
 
 $(function(){
     $(".exercise").hide();
