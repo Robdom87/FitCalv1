@@ -96,6 +96,10 @@ $("#exerciseSearch").submit(function (event) {
             console.log(data);
             $(".saved-exercises").hide()
             $('.exercise-selection-body').text("")
+            if (data.length===0){
+                $('.exercise-selection-body').text("No Results Found")
+                return   
+            } 
             for(var i=0; i < data.length; i++) {
                 var name = data[i].name
                 var equipment = data[i].equipment
@@ -103,6 +107,7 @@ $("#exerciseSearch").submit(function (event) {
                 var results = $(`<input type="radio" name="result" data-name="${name}" data-equipment="${equipment}" data-instructions="${instructions}"/><label for="result"/>${name}<br>`);
                 results.on("change",saveworkout)
                 $('.exercise-selection-body').append(results)
+                
             }
         });
 
