@@ -376,7 +376,59 @@ $("#foodValues").on('click', '.removeBtn', function () {
     }
 })
 
+//aggregate all the amounts from the page displayed in the total row
+function sumTotal() {
+    let calInfoTot = 0;
+    let protInfoTot = 0;
+    let carInfoTot = 0;
+    let fatInfoTot = 0;
+    let sodInfoTot = 0;
+    let cholInfoTot = 0;
 
+
+    $(".calInfo").each(function () {
+        let totalcal = this.textContent;
+        calInfoTot = calInfoTot + parseInt(totalcal);
+    })
+    $(".protInfo").each(function () {
+        let totalprot = this.textContent;
+        protInfoTot = protInfoTot + parseInt(totalprot);
+    })
+    $(".carInfo").each(function () {
+        let totalcar = this.textContent;
+        carInfoTot = carInfoTot + parseInt(totalcar);
+    })
+    $(".fatInfo").each(function () {
+        let totalfat = this.textContent;
+        fatInfoTot = fatInfoTot + parseInt(totalfat);
+    })
+    $(".sodInfo").each(function () {
+        let totalsod = this.textContent;
+        sodInfoTot = sodInfoTot + parseInt(totalsod);
+    })
+    $(".cholInfo").each(function () {
+        let totalchol = this.textContent;
+        cholInfoTot = cholInfoTot + parseInt(totalchol);
+    })
+
+    $("#caloriesTot").text(calInfoTot + " kcal");
+    $("#proteinTot").text(protInfoTot + " g");
+    $("#carbsTot").text(carInfoTot + " g");
+    $("#fatTot").text(fatInfoTot + " g");
+    $("#sodiumTot").text(sodInfoTot + " mg");
+    $("#cholesterolTot").text(cholInfoTot + " mg");
+}
+
+//message displayd if API request pulls bad info
+function errorMessage() {
+    $(".notifText").text("Please submit valid entry.");
+    $(".notification").removeClass("is-hidden");
+}
+
+//functionality for delete button
+$('.delete').click(function(){
+    $(".notification").addClass("is-hidden");
+})
 
 
 
