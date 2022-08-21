@@ -37,8 +37,9 @@ function calculateBmi() {
 }
 // Clear Local Storage btn
 function deleteItems(){
-    localStorage.clear();
-    location.reload();
+    localStorage.removeItem("nutritionRow");
+    // localStorage.clear();
+     location.reload();
 }
 
 
