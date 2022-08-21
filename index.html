@@ -74,9 +74,6 @@
         <input type="radio" id="abductors" name="muscle" value="abductors">
         <label for="abductors">Abductors</label><br>
 
-        <!-- <input type="radio" id="adductors" name="muscle" value="adductors">
-            <label for="adductors"> Adductors</label><br> -->
-
         <input type="radio" id="biceps" name="muscle" value="biceps">
         <label for="biceps">Biceps</label><br>
 
@@ -116,34 +113,50 @@
         <input type="radio" id="triceps" name="muscle" value="triceps">
         <label for="triceps">Triceps</label><br>
 
-        <button type="submit">Search</button>
-    </form>
+        <button  type="submit">Search</button> 
+        <button type="button" class="exercises-saved">Saved Exercises</button>
+    </form> 
 
     <section>
-        <div class="modal">
+        <div class="modal exercise-selection">
             <div class="modal-background"></div>
             <div class="modal-card">
                 <header class="modal-card-head">
-                    <p class="modal-card-title"></p>
+                    <p class="modal-card-title">Exercise Selection</p>
                     <button class="delete" aria-label="close"></button>
                 </header>
-                <section class="modal-card-body">
-                    <!-- Content ... -->
+                <section class="modal-card-body exercise-selection-body">
+                        <!-- Content ... -->
                 </section>
                 <footer class="modal-card-foot">
                     <button class="button is-success">Save</button>
                     <button class="cancel-button">Cancel</button>
-                    <button class="ok-button">Ok</button>
                 </footer>
             </div>
         </div>
+
+
     </section>
-
-    <!-- <section>
-            <div class="workout1">  
-
+    <section>
+        <div class="modal saved-exercises">
+            <div class="modal-background"></div>
+            <div class="modal-card">
+                <header class="modal-card-head">
+                    <p class="modal-card-title">Saved Exercises</p>
+                    <button class="delete" aria-label="close"></button>
+                </header>
+                <section class="modal-card-body saved-exercise-body">
+                    <!-- Content ... -->
+                </section>
+                <footer class="modal-card-foot">
+                    <button class="cancel-button">Cancel</button>
+                    <button class="remove-button">Remove All</button>
+                </footer>
             </div>
-        </section> -->
+        </div>
+
+
+    </section>
 
     <main>
         <section class="nutrition">
