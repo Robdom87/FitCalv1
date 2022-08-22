@@ -1,43 +1,45 @@
 @media only screen and (max-width: 576px) {
-    td { 
-
+    td {
         max-width: 100px;
-        word-wrap: break-word; 
+        word-wrap: break-word;
     }
-    .exercise-selection { 
 
+    .exercise-selection {
         max-width: 375px;
-        word-wrap: break-word; 
+        word-wrap: break-word;
     }
-    .saved-exercises { 
 
+    .saved-exercises {
         max-width: 390px;
-        word-wrap: break-word; 
+        word-wrap: break-word;
     }
-    .table th:not([align]){
-        text-align: center;   
+
+    .table th:not([align]) {
+        text-align: center;
     }
 
     .table td {
         padding: 0.3em 0.05em;
+    }
 
-    }
     table td:not([align]) {
-        text-align: center;   
+        text-align: center;
     }
-  }
-  
-  body {
+}
+
+body {
     background-color: white;
 }
+
 nav {
     background-color: #5a4ae3;
-
 }
-   .btnColor {
+
+.btnColor {
     max-width: 250px;
-    margin: 3px; 
-}   
+    margin: 3px;
+}
+
 .center {
     display: block;
     margin-left: auto;
@@ -45,8 +47,8 @@ nav {
     width: 50%;
     max-width: 300px;
 }
-.PurpleBtn {
-color:white;
-background-color: #5a4ae3;
 
+.PurpleBtn {
+    color: white;
+    background-color: #5a4ae3;
 }
