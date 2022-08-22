@@ -151,6 +151,7 @@ function saveworkout() {
 
 //saved exercise button functionality to displayed exercises saved
 $(".exercises-saved").click(function () {
+    $('.saved-exercise-body').empty();
     $(".saved-exercises").show()
     var workouts = JSON.parse(localStorage.getItem("workouts")) || []
 
