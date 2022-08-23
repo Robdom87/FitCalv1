@@ -11,36 +11,39 @@
 </head>
 
 <body>
+    <!-- header with fitCal logo and date-->
     <header class="columns">
-    <img src="./images/FitCal_logo.png" alt="FitCal" class="center">
+        <img src="./images/FitCal_logo.png" alt="FitCal" class="center">
     </header>
     <section class="columns">
         <h2 id="date" class="column is-full has-text-centered"></h2>
     </section>
+
     <!-- Navigation bar three functionalities -->
     <nav class="columns is-flex is-justify-content-center">
         <button id="bmiBtn" class="column is-one-fifth button is-outlined btnColor">BMI</button>
         <button id="nutriBtn" class="column is-one-fifth button is-outlined btnColor">Nutrition</button>
         <button id="exerBtn" class="column is-one-fifth button is-outlined btnColor">Exercise</button>
     </nav>
-    <!-- BMI calculator input (hiden) -->
+
+    <!-- BMI Section -->
     <section id="bmi" class="bmi-section">
         <div class="columns is-flex is-justify-content-center mt-1">
-
             <div class="pr-4">
                 <h3>BMI Calculator</h3>
             </div>
+
+            <!-- BMI input -->
             <label for="weight"></label>
             <input class="input is-info column is-one-fifth is-one-fifth-mobile" placeholder="Weight (lbs)" id="weight"
                 type="numbers"><br>
             <label for="weight">&nbsp</label>
             <input class="input is-info column is-one-fifth is-one-fifth-mobile" placeholder="Height (in)" id="height"
                 type="numbers"><br>
-
             <button onclick="calculateBmi()" class="">Submit</button>
-            <!-- <button onclick="reload()" >Clear</button> -->
         </div>
 
+        <!-- BMI information displayed -->
         <div id="bmi-dislplay" class="columns is-flex is-justify-content-center mt-1">
             <p id="heading"></p>
             <p id="bmi-output"></p>
@@ -50,27 +53,27 @@
 
     <!-- Exercise -->
     <form id="exerciseSearch" class="exercise">
-        
+
+        <!-- Exercise search criteria -->
         <section class="columns">
             <p class="column has-text-right has-text-centered-mobile"><u><b>Intensity</b></u></p>
 
             <section class="column has-text-centered-mobile">
                 <input type="radio" id="beginner" name="intensity" value="beginner" required>
                 <label for="beginner">Beginner</label><br>
-        
+
                 <input type="radio" id="intermediate" name="intensity" value="intermediate">
                 <label for="intermediate">Intermediate</label><br>
-        
-                <input type="radio" id="advanced" name="intensity" value="advanced">
-                <label for="advanced">Advanced</label><br>  
-            </section>
-            
-        </section> 
 
+                <input type="radio" id="advanced" name="intensity" value="advanced">
+                <label for="advanced">Advanced</label><br>
+            </section>
+
+        </section>
 
         <section class="columns">
             <p class="column has-text-right has-text-centered-mobile"><u><b>Type</b></u></p>
-            
+
             <section class="column has-text-centered-mobile">
                 <input type="radio" id="cardio" name="type" value="cardio" required>
                 <label for="cardio">Cardio</label><br>
@@ -81,9 +84,9 @@
                 <input type="radio" id="stretching" name="type" value="stretching">
                 <label for="stretching">Stretching</label><br>
             </section>
-        
+
         </section>
-        
+
         <section class="columns">
             <p class="column has-text-right has-text-centered-mobile"><u><b>Muscle Group</b></u></p>
 
@@ -137,9 +140,9 @@
                 <button type="button" class="exercises-saved">Saved Exercises</button>
             </section>
         </section>
-        
     </form>
 
+    <!-- Exercise modal displaying API output -->
     <section>
         <div class="modal exercise-selection">
             <div class="modal-background"></div>
@@ -149,7 +152,7 @@
                     <button class="delete" aria-label="close"></button>
                 </header>
                 <section class="modal-card-body exercise-selection-body">
-                        <!-- Content ... -->
+                    <!-- Content ... -->
                 </section>
                 <footer class="modal-card-foot">
                     <button id="savebutton" class="button PurpleBtn">Save</button>
@@ -157,9 +160,9 @@
                 </footer>
             </div>
         </div>
-
-
     </section>
+
+    <!-- Exercise modal displaying saved exercises -->
     <section>
         <div class="modal saved-exercises">
             <div class="modal-background"></div>
@@ -177,33 +180,33 @@
                 </footer>
             </div>
         </div>
-
-
     </section>
 
-    <main>
-        <section class="nutrition">
-            <!-- input bar for nutrition -->
-            <section class="columns is-flex is-justify-content-center mt-1">
-                <input id="amountInput" type="number" class="input is-info column is-one-fifth has-text-right" min="0"
-                    placeholder="Amount">
-                <select id="unitInput" name="measurement" class="dropdown is-one-fifth">
-                    <option value="lb">lb</option>
-                    <option value="oz">oz</option>
-                    <option value="g">g</option>
-                    <option value="item" class="itemAmount">item</option>
-                </select>
-                <input id="itemInput" type="text" class="input is-info column is-one-fifth" placeholder="Food">
-                <button id="submitBtn" type="submit" class="column button is-one-fifth">Submit</button>
-            </section>
-            <!-- alert if API request fails -->
-            <div class="notification is-info is-light is-hidden has-text-centered">
-                <button class="delete"></button>
-                <span class="notifText">Please submit a valid entry.</span>
+    <!-- Nutrition section -->
+    <section class="nutrition">
 
-            </div>
-            <!-- row with all nutritional sections -->
-            <div class="table-container">
+        <!-- input bar for nutrition -->
+        <section class="columns is-flex is-justify-content-center mt-1">
+            <input id="amountInput" type="number" class="input is-info column is-one-fifth has-text-right" min="0"
+                placeholder="Amount">
+            <select id="unitInput" name="measurement" class="dropdown is-one-fifth">
+                <option value="lb">lb</option>
+                <option value="oz">oz</option>
+                <option value="g">g</option>
+                <option value="item" class="itemAmount">item</option>
+            </select>
+            <input id="itemInput" type="text" class="input is-info column is-one-fifth" placeholder="Food">
+            <button id="submitBtn" type="submit" class="column button is-one-fifth">Submit</button>
+        </section>
+
+        <!-- alert if API request fails -->
+        <div class="notification is-info is-light is-hidden has-text-centered">
+            <button class="delete delBtn"></button>
+            <span class="notifText">Please submit a valid entry.</span>
+        </div>
+
+        <!-- table with all nutritional sections -->
+        <div class="table-container">
             <table class="table is-flex is-justify-content-center" id="foodValues">
                 <tr>
                     <th>Food</th>
@@ -215,6 +218,7 @@
                     <th class="is-hidden-mobile">Cholestrol</th>
                     <th></th>
                 </tr>
+
                 <!-- total row -->
                 <tr>
                     <td>Totals (unit)</td>
@@ -228,14 +232,13 @@
                 </tr>
             </table>
         </div>
-        <section class="columns is-flex is-justify-content-center mt-1">
-            <!-- Clear Local Storage btn -->
-            <button class="columns button PurpleBtn" onclick="deleteItems()">Delete All</button>
-            
-        </section>
 
+        <!-- Clear Local Storage btn -->
+        <section class="columns is-flex is-justify-content-center mt-1">
+            <button class="columns button PurpleBtn" onclick="deleteItems()">Delete All</button>
         </section>
-    </main>
+    </section>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
     <!-- moment link -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
