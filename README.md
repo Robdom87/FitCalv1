@@ -1,4 +1,4 @@
-# Group Project FitCal - Nutrition and Exercise App 
+# FitCal - Nutrition and Exercise App 
 
 ## Description
 
@@ -20,8 +20,8 @@ Chavez, Juan
 
 ## Usage
 
-User can find deployed app at [FitCal](https://robdom87.github.io/FitCal/)
+User can find deployed app at [FitCal](https://robdom87.github.io/FitCalv1/)
 
 ![FitCall app screenshot](./images/FitCal_screenshot.png)
 
-Repo for app can be found at: (https://github.com/Robdom87/FitCal)
+Repo for app can be found at: (https://github.com/Robdom87/FitCalv1)
